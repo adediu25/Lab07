@@ -49,20 +49,43 @@ LinkedList<T>::~LinkedList() {
 
 template <class T>
 void LinkedList<T>::addItem(T data) {
+	listSize++;
 	Node* newNode = new Node();
 	newNode->data = data;
-	newNode->link = nullptr;
+	
+	// Condition for empty list
 	if (head == nullptr) {
 		head = newNode;
+		newNode = nullptr;
+		return;
 	}
 	else {
 		Node* currentNode = head;
-		while (currentNode->link != nullptr) {
-			currentNode = currentNode->link;
+		// Check if newNode should be first in the list
+		if (currentNode->data >= data) {
+			head = newNode;
+			newNode->link = currentNode;
 		}
-		currentNode->link = newNode;
+		else {
+			// Else iterate through list
+			while (currentNode->link != nullptr) {
+				// Insert newNode after currentNode if the 
+				// node after current is greater than or
+				// equal to newNode
+				if (currentNode->link->data >= data) {
+					newNode->link = currentNode->link;
+					currentNode->link = newNode;
+					return;
+				}
+				else
+					currentNode = currentNode->link;
+			}
+			// Insert newNode at end of list if it is greater
+			// than all existing elements
+			currentNode->link = newNode;
+			newNode->link = nullptr;
+		}
 	}
-	listSize++;
 }
 
 template <class T>
@@ -104,21 +127,20 @@ template <class T>
 T LinkedList<T>::seeAt(int index) const{
 	if (index > listSize - 1) 
 		throw OutOfBounds();
-	/*Node* current = head;
+	Node* current = head;
     int count = 0;
-    while (current != NULL) {
-        if (count == data)
+    while (current != nullptr) {
+        if (count == index)
             return current->data;
         count++;
         current = current->link;
     }
-	throw OutOfBounds();*/
 }
 
 template <class T>
 bool LinkedList<T>::isInList(T key) const{
 	Node* temp = head;
-	while (temp != NULL) {
+	while (temp != nullptr) {
 		if (temp->data == key) {
 			return true;
 		}
