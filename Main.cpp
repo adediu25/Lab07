@@ -1,14 +1,26 @@
 #include "LinkedList.h"
+#include "Part.h"
 #include <stdlib.h>     
 #include <time.h>
 
 using namespace std;
 
+//Try to keep standard of "float" type for decimals to avoid type errors
+
 int main()
-{	
+{
 	srand(time(0));
 
-	LinkedList<int> lst;
+
+	///* 
+	//FOR TESTING PART CLASS
+	//*/
+	//LinkedList<int> lst;
+	//Part pogPart(2, "pog", 69.69, "poggers", 2);
+	//cout << pogPart.GetPartInfo() << endl;
+	//cout << "Price: " << pogPart.GetPrice() << endl;
+	//cout << "Quantity: " << pogPart.GetQuantity() << endl;
+	//
 
 	int num1, num2;
 	for (int i = 0; i < 5; i++) {
@@ -98,7 +110,7 @@ int main()
 			break;
 		case 9:
 			exit(0);
-			
+
 		}
 	}*/
 
