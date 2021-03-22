@@ -1,6 +1,14 @@
 #include "Part.h"
 #include <string>
 
+Part::Part(int num) {
+	PartNumber = num;
+	Description = "";
+	Price = 0;
+	UOM = "";
+	QuantityOnHand = 0;
+}
+
 Part::Part(int number, std::string desc, float prc, std::string unit, int quan) {
 	PartNumber = number;
 	Description = desc;

@@ -13,6 +13,7 @@ private:
 	int LeadTime;				//The number of days to get the part if out of stock
 
 public:
+	Part(int);
 	Part(int, std::string, float, std::string, int = 0);
 	std::string GetPartInfo();	//Returns "Part Number: [PartNumber].
 								//		   Description: [Description]."	

@@ -15,7 +15,7 @@ int main()
 	///* 
 	//FOR TESTING PART CLASS
 	//*/
-	LinkedList<int> lst;
+	/*LinkedList<int> lst;
 	Part pogPart(2, "pog", 69.69f, "poggers");
 	cout << pogPart.GetPartInfo() << endl;
 	cout << "Price: " << pogPart.GetPrice() << endl;
@@ -50,70 +50,84 @@ int main()
 	catch (LinkedList<int>::OutOfBounds)
 	{
 		cout << "ERROR: index out of bounds.";
-	}
-
-	/*LinkedList<int> obj;
-	int key;
-	int data;
-	int index;
-	int ch;
-
-	ch = 1;
-	while (1)
-	{
-		cout << "1. creating 2. display 3. size 4.insert 5. delete1 6.inList 7. isEmpty 8. SeeAt 9.exit" << endl;
-		cin >> ch;
-		switch (ch)
-		{
-		case 1:
-			obj.create();
-			break;
-		case 2:
-			obj.print();
-			break;
-		case 3:
-			obj.size();
-			break;
-		case 4:
-			obj.addItem();
-			break;
-		case 5:
-			obj.removeItem();
-			break;
-		case 6:
-			cout << "Enter the key that needs to be found in the linked list: ";
-			cin >> key;
-			if (obj.isInList(key) == 1)
-			{
-				cout << "Key is present" << endl;
-			}
-			else
-			{
-				cout << "Key does not exist in the list" << endl;
-			}
-			break;
-		case 7:
-			if (obj.isEmpty() == 1)
-			{
-				cout << "The list is empty " << endl;
-			}
-			else
-			{
-				cout << "The list is not empty" << endl;
-			}
-			break;
-		case 8:
-			cout << "Enter the data to show its location in the linked list: " << endl;
-			cin >> data;
-			index = obj.seeAt(data);
-			cout << "The data you entered is present at: " << index << endl;
-			break;
-		case 9:
-			exit(0);
-
-		}
 	}*/
 
+	LinkedList<Part> partList;
+
+	int choice;
+	cout << "Enter number for function for list:\n1 to add item\n"
+		<< "2 to remove item\n3 to see if item is in list\n4 to see if list is empty\n"
+		<< "5 to get size of list\n6 to see item at an index\n7 to print contents of list\n";
+	cin >> choice;
+
+	int partNum, qoh;
+	float partPrice;
+	string desc, uom;
+	bool result;
+
+	switch (choice) {
+	case 1:
+		cout << "Enter part number: ";
+		cin >> partNum;
+		cout << "Enter product description: ";
+		getline(cin, desc);
+		cout << "Enter product price: ";
+		cin >> partPrice;
+		cout << "Enter unit of measure: ";
+		getline(cin, uom);
+		cout << "Enter quantity on hand: ";
+		cin >> qoh;
+
+		Part* newPart = new Part(partNum, desc, partPrice, uom, qoh);
+		partList.addItem(*newPart);
+		delete newPart;
+		break;
+	case 2:
+		cout << "Enter part number of part you want to remove: ";
+		cin >> partNum;
+		
+		Part* newPart = new Part(partNum);
+		partList.removeItem(*newPart);
+		delete newPart;
+		break;
+	case 3:
+		cout << "Enter part number of the part: ";
+		cin >> partNum;
+
+		Part* newPart = new Part(partNum);
+		result = partList.isInList(*newPart);
+
+		if (result == true)
+			cout << "List contains part\n";
+		else
+			cout << "Part is not in list\n";
+
+		delete newPart;
+		break;
+	case 4:
+		result = partList.isEmpty();
+
+		if (result == true)
+			cout << "List is empty\n";
+		else
+			cout << "Part is not empty\n";
+		break;
+	case 5:
+		partNum = partList.size();
+		cout << "List contains " << partNum << " parts\n";
+		break;
+	case 6:
+		cout << "Enter index for list: ";
+		cin >> partNum;
+
+		cout << "Part:\n" << partList.seeAt(partNum).GetPartInfo() << endl;
+		break;
+	case 7:
+		partList.print();
+		break;
+	default:
+		break;
+	}
 
 	return 0;
 }
