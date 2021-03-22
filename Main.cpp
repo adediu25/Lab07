@@ -15,12 +15,12 @@ int main()
 	///* 
 	//FOR TESTING PART CLASS
 	//*/
-	//LinkedList<int> lst;
-	//Part pogPart(2, "pog", 69.69, "poggers", 2);
-	//cout << pogPart.GetPartInfo() << endl;
-	//cout << "Price: " << pogPart.GetPrice() << endl;
-	//cout << "Quantity: " << pogPart.GetQuantity() << endl;
-	//
+	LinkedList<int> lst;
+	Part pogPart(2, "pog", 69.69f, "poggers");
+	cout << pogPart.GetPartInfo() << endl;
+	cout << "Price: " << pogPart.GetPrice() << endl;
+	cout << "Quantity: " << pogPart.GetQuantity() << endl;
+	
 
 	int num1, num2;
 	for (int i = 0; i < 5; i++) {

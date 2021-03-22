@@ -100,6 +100,13 @@ T LinkedList<T>::removeItem(T item) {
 		head = nullptr;
 		return i;
 	}
+	else if (currentNode->data == item) {							//Condition for removing first item
+		listSize--;
+		T i = currentNode->data;
+		head = currentNode->link;
+		delete currentNode;
+		return i;
+	}
 	else {
 		Node* lastNode = head;
 		currentNode = currentNode->link;

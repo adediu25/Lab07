@@ -20,7 +20,7 @@ public:
 	int GetQuantity();			//Gets quantity
 	bool InStock();				//True if quantity > 0
 	bool Available(int);		//True if in stock now or by the desired date
-	bool operator > (Part);		//Compares PartNumbers of 2 parts
-	bool operator < (Part);		//Compares PartNumbers of 2 parts
-	bool operator == (Part);	//Compares PartNumbers of 2 parts
+	bool operator>(Part);		//Compares PartNumbers of 2 parts
+	bool operator<(Part);		//Compares PartNumbers of 2 parts
+	bool operator==(Part);	//Compares PartNumbers of 2 parts
 };

@@ -33,14 +33,14 @@ bool Part::Available(int days) {
 	}
 }
 
-bool Part::operator> (Part part2) {
-	return PartNumber > part2.PartNumber;
+bool Part::operator>(Part part2) {
+	return this->PartNumber > part2.PartNumber;
 }
 
-bool Part::operator< (Part part2) {
-	return PartNumber < part2.PartNumber;
+bool Part::operator<(Part part2) {
+	return this->PartNumber < part2.PartNumber;
 }
 
-bool Part::operator== (Part part2) {
-	return PartNumber == part2.PartNumber;
+bool Part::operator==(Part part2) {
+	return this->PartNumber == part2.PartNumber;
 }
