@@ -15,7 +15,7 @@ private:
 public:
 	Part(int);
 	Part(int, std::string, float, std::string, int = 0);
-	std::string GetPartInfo();	//Returns "Part Number: [PartNumber].
+	std::string GetPartInfo() const;	//Returns "Part Number: [PartNumber].
 								//		   Description: [Description]."	
 	float GetPrice();
 	int GetQuantity();			//Gets quantity
@@ -24,4 +24,6 @@ public:
 	bool operator>(Part);		//Compares PartNumbers of 2 parts
 	bool operator<(Part);		//Compares PartNumbers of 2 parts
 	bool operator==(Part);	//Compares PartNumbers of 2 parts
+	// Overload so that part can be printed using print() from LinkedList
+	friend std::ostream& operator<<(std::ostream&, const Part&);
 };

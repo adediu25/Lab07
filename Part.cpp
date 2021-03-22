@@ -17,7 +17,7 @@ Part::Part(int number, std::string desc, float prc, std::string unit, int quan) 
 	QuantityOnHand = quan;
 }
 
-std::string Part::GetPartInfo() {
+std::string Part::GetPartInfo() const {
 	return "PartNumber: " + std::to_string(PartNumber) + "\nDescription: " + Description;
 }
 
@@ -51,4 +51,9 @@ bool Part::operator<(Part part2) {
 
 bool Part::operator==(Part part2) {
 	return this->PartNumber == part2.PartNumber;
+}
+
+std::ostream& operator<<(std::ostream& out, const Part& part) {
+	out << part.GetPartInfo();
+	return out;
 }
