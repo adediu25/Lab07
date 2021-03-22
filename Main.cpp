@@ -11,9 +11,6 @@ int main()
 {
 	srand(time(0));
 
-	Part pogPart(2, "pog", 69.69f, "poggers");
-	cout << pogPart;
-
 	///* 
 	//FOR TESTING PART CLASS
 	//*/
@@ -54,7 +51,7 @@ int main()
 		cout << "ERROR: index out of bounds.";
 	}*/
 
-	/*LinkedList<Part> partList;
+	LinkedList<Part> partList;
 
 	int choice;
 	cout << "Enter number for function for list:\n1 to add item\n"
@@ -129,7 +126,7 @@ int main()
 		break;
 	default:
 		break;
-	}*/
+	}
 
 	return 0;
 }
