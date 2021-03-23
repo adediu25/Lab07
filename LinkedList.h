@@ -11,6 +11,8 @@ private:
 	{
 		T data;
 		Node* link;
+		Node() {};
+		Node(const Node&) = default;
 	};
 	Node* head;
 	int listSize;
@@ -18,12 +20,12 @@ public:
 	class OutOfBounds {};
 	LinkedList();
 	~LinkedList();
-	void addItem(T);
-	T removeItem(T);
-	bool isInList(T) const;
+	void addItem(T*);
+	T* removeItem(T*);
+	bool isInList(T*) const;
 	bool isEmpty() const;
 	int size() const;
-	T seeAt(int) const;
+	T* seeAt(int) const;
 	void print() const;
 };
 
@@ -48,21 +50,21 @@ LinkedList<T>::~LinkedList() {
 }
 
 template <class T>
-void LinkedList<T>::addItem(T data) {
+void LinkedList<T>::addItem(T* data) {
 	listSize++;
 	Node* newNode = new Node();
-	newNode->data = data;
+	newNode->data = *data;
 	
 	// Condition for empty list
 	if (head == nullptr) {
 		head = newNode;
-		newNode = nullptr;
+		newNode->link = nullptr;
 		return;
 	}
 	else {
 		Node* currentNode = head;
 		// Check if newNode should be first in the list
-		if (currentNode->data >= data) {
+		if (currentNode->data >= *data) {
 			head = newNode;
 			newNode->link = currentNode;
 		}
@@ -72,7 +74,7 @@ void LinkedList<T>::addItem(T data) {
 				// Insert newNode after currentNode if the 
 				// node after current is greater than or
 				// equal to newNode
-				if (currentNode->link->data >= data) {
+				if (currentNode->link->data >= *data) {
 					newNode->link = currentNode->link;
 					currentNode->link = newNode;
 					return;
@@ -89,39 +91,36 @@ void LinkedList<T>::addItem(T data) {
 }
 
 template <class T>
-T LinkedList<T>::removeItem(T item) {
+T* LinkedList<T>::removeItem(T* item) {
 	if (head == nullptr)												//Condition for no items
-		return -99999999;
+		return nullptr;
 	Node* currentNode = head;
-	if (currentNode->data == item && currentNode->link == nullptr) {    //Condition for list with one item
+	if (currentNode->data == *item && currentNode->link == nullptr) {    //Condition for list with one item
 		listSize--;
-		T i = currentNode->data;
-		delete currentNode;
+		T* i = &(currentNode->data);
 		head = nullptr;
 		return i;
 	}
-	else if (currentNode->data == item) {							//Condition for removing first item
+	else if (currentNode->data == *item) {							//Condition for removing first item
 		listSize--;
-		T i = currentNode->data;
+		T* i = &(currentNode->data);
 		head = currentNode->link;
-		delete currentNode;
 		return i;
 	}
 	else {
 		Node* lastNode = head;
 		currentNode = currentNode->link;
 		while (currentNode != nullptr) {
-			if (currentNode->data == item) {
+			if (currentNode->data == *item) {
 				listSize--;
-				T i = currentNode->data;
+				T* i = &(currentNode->data);
 				lastNode->link = currentNode->link;
-				delete currentNode;
 				return i;
 			}
 			lastNode = currentNode;
 			currentNode = currentNode->link;
 		}
-		return -9999999;
+		return nullptr;
 	}
 }
 
@@ -131,24 +130,24 @@ int LinkedList<T>::size() const {
 }
 
 template <class T>
-T LinkedList<T>::seeAt(int index) const{
+T* LinkedList<T>::seeAt(int index) const{
 	if (index > listSize - 1) 
 		throw OutOfBounds();
 	Node* current = head;
     int count = 0;
     while (current != nullptr) {
         if (count == index)
-            return current->data;
+            return &(current->data);
         count++;
         current = current->link;
     }
 }
 
 template <class T>
-bool LinkedList<T>::isInList(T key) const{
+bool LinkedList<T>::isInList(T* key) const{
 	Node* temp = head;
 	while (temp != nullptr) {
-		if (temp->data == key) {
+		if (temp->data == *key) {
 			return true;
 		}
 		temp = temp->link;

@@ -1,6 +1,14 @@
 #include "Part.h"
 #include <string>
 
+Part::Part() {
+	PartNumber = 0;
+	Description = "";
+	Price = 0;
+	UOM = "";
+	QuantityOnHand = 0;
+}
+
 Part::Part(int num) {
 	PartNumber = num;
 	Description = "";
@@ -47,6 +55,14 @@ bool Part::operator>(Part part2) {
 
 bool Part::operator<(Part part2) {
 	return this->PartNumber < part2.PartNumber;
+}
+
+bool Part::operator>=(Part part2) {
+	return this->PartNumber >= part2.PartNumber;
+}
+
+bool Part::operator<=(Part part2) {
+	return this->PartNumber <= part2.PartNumber;
 }
 
 bool Part::operator==(Part part2) {

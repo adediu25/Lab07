@@ -143,6 +143,7 @@
     <ClCompile Include="Part.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DLL.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Part.h" />
   </ItemGroup>
